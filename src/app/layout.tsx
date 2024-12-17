@@ -1,16 +1,7 @@
+import React from 'react';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { TbShoppingCartCheck, TbMenu2 } from 'react-icons/tb';
 import './globals.css';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -23,9 +14,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+    <html lang='en' data-theme='cupcake'>
+      <body>
+        <div className='h-screen overflow-y-scroll overflow-x-hidden relative'>
+          <header className='absolute top-0 left-0 right-0 bg-amber-200 h-[3em] overflow-hidden shadow-sm'>
+            <nav className='gutter navbar p-0 min-h-0'>
+              <div className='flex-1 px-4'>
+                <TbShoppingCartCheck size={24} />
+                <span className='ml-1 font-semibold select-none'>Grocery</span>
+              </div>
+              <button className='btn btn-square btn-ghost'>
+                <TbMenu2 size={24} />
+              </button>
+            </nav>
+          </header>
+          <main className='gutter mt-[3em]'>{children}</main>
+        </div>
       </body>
     </html>
   );
