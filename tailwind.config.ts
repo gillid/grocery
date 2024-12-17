@@ -5,4 +5,7 @@ export default {
   purge: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   plugins: [require('daisyui')],
+  daisyui: {
+    themes: ['cupcake'],
+  },
 } satisfies Config;
