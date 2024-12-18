@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@libs/*": ["./src/libs/*"]
+      "@/auth": ["./src/libs/auth"],
+      "@/env": ["./src/libs/env"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-    .gutter {
-        @apply max-w-[320px] mx-auto;
-    }
+  .gutter {
+    @apply mx-auto max-w-[320px];
+  }
 }
