@@ -22,7 +22,6 @@ const getSession = async () => {
 };
 
 const getAuthUncached = async (): Promise<Auth | null> => {
-  console.log('getAuth');
   const session = await getSession();
 
   if (session.uuid) {
