@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const path = require('path');
 
 const buildEslintCommand = (filenames) =>
@@ -6,5 +7,6 @@ const buildEslintCommand = (filenames) =>
     .join(' --file ')}`;
 
 module.exports = {
+  '*.{js,jsx,ts,tsx,json,css,md}': ['prettier --write'],
   '*.{js,jsx,ts,tsx}': [buildEslintCommand],
 };
