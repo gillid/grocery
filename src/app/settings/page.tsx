@@ -1,12 +1,14 @@
 import React from 'react';
+import { redirect } from 'next/navigation';
 import { getAuth } from '@/auth';
 import { deleteAndLogout } from './deleteAndLogout';
 
 export default async function Settings() {
   const auth = await getAuth();
 
-  // TODO: auth guard maybe
-  if (!auth) return null;
+  if (!auth) {
+    redirect('/');
+  }
 
   return (
     <div className='mx-3 mt-3 flex-1'>
