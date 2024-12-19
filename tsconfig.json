@@ -21,7 +21,8 @@
     "paths": {
       "@/auth": ["./src/libs/auth"],
       "@/env": ["./src/libs/env"],
-      "@/random": ["./src/libs/random"]
+      "@/random": ["./src/libs/random"],
+      "@/storage": ["./src/libs/storage"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
