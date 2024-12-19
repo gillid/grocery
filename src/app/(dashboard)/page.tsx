@@ -28,7 +28,7 @@ const Private = async () => {
   );
 };
 
-export default async function Home() {
+export default async function Dashboard() {
   const auth = await getAuth();
 
   return (
