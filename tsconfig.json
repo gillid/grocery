@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@/auth": ["./src/libs/auth"],
-      "@/env": ["./src/libs/env"]
+      "@/env": ["./src/libs/env"],
+      "@/random": ["./src/libs/random"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
