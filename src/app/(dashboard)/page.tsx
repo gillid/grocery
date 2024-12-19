@@ -1,40 +1,9 @@
-import { createAuth, getAuth, getUuid } from '@/auth';
-import { getUserLists } from '@/storage';
-
-const Public = () => (
-  <>
-    <h2>Public</h2>
-    <p>
-      <button className='btn' onClick={createAuth}>
-        Authorize
-      </button>
-    </p>
-  </>
-);
-
-const Private = async () => {
-  const uuid = await getUuid();
-
-  if (!uuid) return null;
-
-  const lists = await getUserLists();
-
-  return (
-    <>
-      <h2>Private</h2>
-      <p>UUID: {uuid}</p>
-      <p>{lists.length ? lists.join('<br/>') : 'No lists'}</p>
-    </>
-  );
-};
+import { getAuth } from '@/auth';
+import { Public } from './public/Public';
+import { Private } from './private/Private';
 
 export default async function Dashboard() {
   const auth = await getAuth();
 
-  return (
-    <div className='mx-3 mt-3 flex-1'>
-      <h1>Home</h1>
-      {auth ? <Private /> : <Public />}
-    </div>
-  );
+  return auth ? <Private /> : <Public />;
 }

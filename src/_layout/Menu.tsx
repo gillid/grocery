@@ -39,6 +39,7 @@ export const Menu = () => {
       >
         <MenuItem href='/'>Dashboard</MenuItem>
         <MenuItem href='/share'>Share List</MenuItem>
+        <MenuItem href='/settings'>Settings</MenuItem>
         <MenuItem href='/about'>About</MenuItem>
       </ul>
     </div>

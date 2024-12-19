@@ -1,5 +1,4 @@
 import 'server-only';
-import { revalidatePath } from 'next/cache';
 import { generateHex } from '@/random';
 import { redis } from './_client';
 import { getUserLists, setUserLists } from './user';
@@ -22,8 +21,6 @@ export const createLink = async (listId: string): Promise<string> => {
 
   await redis.set<string>(`link:${linkId}`, listId);
 
-  revalidatePath('/');
-
   return linkId;
 };
 
@@ -35,10 +32,14 @@ export const linkList = async (linkId: string) => {
     throw new Error('Link not found');
   }
 
+  const listExists = redis.exists(`list:${listId}`);
+
+  if (!listExists) {
+    throw new Error('List not found');
+  }
+
   const newLists = [...userLists, listId];
   await setUserLists(newLists);
 
   await redis.del(`link:${linkId}`);
-
-  revalidatePath('/');
 };

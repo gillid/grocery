@@ -1,5 +1,4 @@
 import 'server-only';
-import { revalidatePath } from 'next/cache';
 import { generateHex } from '@/random';
 import { redis } from './_client';
 import { getUserLists, setUserLists } from './user';
@@ -35,8 +34,6 @@ export const createList = async (): Promise<ListId> => {
   await redis.hset<ListItem[]>(`list:${listId}`, { items: [] });
   await setUserLists([...userLists, listId]);
 
-  revalidatePath('/');
-
   return listId;
 };
 
@@ -64,6 +61,4 @@ export const updateList = async (listId: string, data: List) => {
   }
 
   await redis.hset<List[keyof List]>(`list:${listId}`, data);
-
-  revalidatePath('/');
 };
