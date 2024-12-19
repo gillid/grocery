@@ -16,7 +16,7 @@ export const Menu = async () => {
         className='dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow'
       >
         <MenuItem href='/'>Dashboard</MenuItem>
-        {auth && <MenuItem href='/share'>Share List</MenuItem>}
+        {auth && <MenuItem href='/share'>Share</MenuItem>}
         {auth && <MenuItem href='/settings'>Settings</MenuItem>}
         <MenuItem href='/about'>About</MenuItem>
       </ul>
