@@ -28,11 +28,11 @@ const Private = async () => {
   );
 };
 
-export default async function Home() {
+export default async function Dashboard() {
   const auth = await getAuth();
 
   return (
-    <div>
+    <div className='mx-3 mt-3 flex-1'>
       <h1>Home</h1>
       {auth ? <Private /> : <Public />}
     </div>

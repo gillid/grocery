@@ -7,6 +7,6 @@ export default {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   plugins: [daisyui],
   daisyui: {
-    themes: ['cupcake'],
+    themes: ['retro'],
   },
 } satisfies Config;

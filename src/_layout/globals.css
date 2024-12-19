@@ -4,6 +4,6 @@
 
 @layer components {
   .gutter {
-    @apply mx-auto max-w-[320px];
+    @apply w-[100%] md:mx-auto md:w-[320px];
   }
 }
