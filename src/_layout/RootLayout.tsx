@@ -8,7 +8,7 @@ export const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
       <body>
         <div className='h-screen overflow-y-scroll overflow-x-hidden relative'>
           <Header />
-          <main className='min-h-screen pt-[3em] flex'>
+          <main className='min-h-screen pt-[3em] flex bg-white'>
             <div className='gutter flex'>{children}</div>
           </main>
         </div>
