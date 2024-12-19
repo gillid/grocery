@@ -1,1 +1,1 @@
-export { getAuth, createAuth, deleteAuth } from './auth';
+export { getAuth, getUuid, createAuth, deleteAuth } from './auth';

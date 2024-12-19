@@ -1,11 +1,9 @@
-'use server';
-
 import 'server-only';
 import { getIronSession } from 'iron-session';
 import { cookies } from 'next/headers';
-import { randomUUID } from 'crypto';
 import { cache } from 'react';
 import { getEnv, isProduction } from '@/env';
+import { createUser } from '@/storage';
 
 type Auth = {
   uuid: string;
@@ -22,7 +20,6 @@ const getSession = async () => {
 };
 
 const getAuthUncached = async (): Promise<Auth | null> => {
-  console.log('getAuth');
   const session = await getSession();
 
   if (session.uuid) {
@@ -36,15 +33,31 @@ const getAuthUncached = async (): Promise<Auth | null> => {
 
 export const getAuth = cache(getAuthUncached);
 
+export const getUuid = async (): Promise<string> => {
+  'use server';
+
+  const auth = await getAuth();
+
+  if (!auth) {
+    throw new Error('Unauthorized');
+  }
+
+  return auth.uuid;
+};
+
 export const createAuth = async () => {
+  'use server';
+
   const session = await getSession();
 
-  session.uuid = randomUUID();
+  session.uuid = await createUser();
 
   await session.save();
 };
 
 export const deleteAuth = async () => {
+  'use server';
+
   const session = await getSession();
 
   session.destroy();
