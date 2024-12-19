@@ -1,9 +1,9 @@
 import 'server-only';
 import { getIronSession } from 'iron-session';
 import { cookies } from 'next/headers';
-import { randomUUID } from 'crypto';
 import { cache } from 'react';
 import { getEnv, isProduction } from '@/env';
+import { createUser } from '@/storage';
 
 type Auth = {
   uuid: string;
@@ -50,7 +50,7 @@ export const createAuth = async () => {
 
   const session = await getSession();
 
-  session.uuid = randomUUID();
+  session.uuid = await createUser();
 
   await session.save();
 };
