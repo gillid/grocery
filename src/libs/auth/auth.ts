@@ -3,7 +3,6 @@ import { getIronSession } from 'iron-session';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
 import { getEnv, isProduction } from '@/env';
-import { createUser } from '@/storage';
 
 type Auth = {
   uuid: string;
@@ -45,19 +44,15 @@ export const getUuid = async (): Promise<string> => {
   return auth.uuid;
 };
 
-export const createAuth = async () => {
-  'use server';
-
+export const createAuth = async (uuid: string) => {
   const session = await getSession();
 
-  session.uuid = await createUser();
+  session.uuid = uuid;
 
   await session.save();
 };
 
 export const deleteAuth = async () => {
-  'use server';
-
   const session = await getSession();
 
   session.destroy();
