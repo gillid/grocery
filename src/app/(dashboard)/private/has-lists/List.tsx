@@ -25,6 +25,7 @@ import type { List as ListType } from '@/storage';
 import { ListItem } from './ListItem';
 import { setListItems } from './listItemsApi';
 import { SyncIndicator } from './SyncIndicator';
+import { AddNewItem } from './AddNewItem';
 
 type LocalItem = ListType['items'][number] & {
   id: UniqueIdentifier;
@@ -86,31 +87,39 @@ export const List: React.FC<
     }
   }
 
+  // TODO: purge checked
+
   return (
     <>
       <div className='mb-6'>
         <SyncIndicator isPending={isPending} isError={isError} />
       </div>
 
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-        modifiers={[restrictToVerticalAxis, restrictToParentElement]}
-      >
-        <SortableContext items={items} strategy={verticalListSortingStrategy}>
-          <div className='mb-2'>
-            {items.map((item) => (
-              <ListItem
-                key={item.id}
-                id={item.id}
-                text={item.text}
-                checked={item.checked}
-              />
-            ))}
-          </div>
-        </SortableContext>
-      </DndContext>
+      <div className='mb-2'>
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+          modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+        >
+          <SortableContext items={items} strategy={verticalListSortingStrategy}>
+            <div>
+              {items.map((item) => (
+                <ListItem
+                  key={item.id}
+                  id={item.id}
+                  text={item.text}
+                  checked={item.checked}
+                />
+              ))}
+            </div>
+          </SortableContext>
+        </DndContext>
+      </div>
+
+      <div className='mt-6'>
+        <AddNewItem listId={listId} list={list} />
+      </div>
     </>
   );
 };
