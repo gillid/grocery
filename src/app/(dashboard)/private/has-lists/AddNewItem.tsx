@@ -2,7 +2,7 @@
 
 import React, { useTransition } from 'react';
 import type { List } from '@/storage';
-import { setListItems } from './setListItems';
+import { setListItems } from './listItemsApi';
 
 export const AddNewItem: React.FC<
   React.PropsWithChildren<{
@@ -13,13 +13,8 @@ export const AddNewItem: React.FC<
   const [isPending, startTransition] = useTransition();
 
   const handleClick = () => {
-    const newList = {
-      ...list,
-      items: [...list.items, { text: '', checked: false }],
-    };
-
     startTransition(async () => {
-      await setListItems(listId, newList);
+      await setListItems(listId, [...list.items, { text: '', checked: false }]);
     });
   };
 

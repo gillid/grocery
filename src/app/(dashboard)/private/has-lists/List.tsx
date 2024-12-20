@@ -23,7 +23,7 @@ import {
 } from '@dnd-kit/modifiers';
 import type { List as ListType } from '@/storage';
 import { ListItem } from './ListItem';
-import { setListItems } from './setListItems';
+import { setListItems } from './listItemsApi';
 import { SyncIndicator } from './SyncIndicator';
 
 type LocalItem = ListType['items'][number] & {
@@ -60,12 +60,13 @@ export const List: React.FC<
       setError(false);
 
       try {
-        await setListItems(listId, {
-          items: newArray.map((item) => ({
+        await setListItems(
+          listId,
+          newArray.map((item) => ({
             text: item.text,
             checked: item.checked,
-          })),
-        });
+          }))
+        );
       } catch (err) {
         setError(err ? true : true);
       }
