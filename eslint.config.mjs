@@ -18,6 +18,7 @@ const eslintConfig = [
     ],
     rules: {
       'no-console': 'error',
+      'react-hooks/exhaustive-deps': 'off',
     },
   }),
 ];

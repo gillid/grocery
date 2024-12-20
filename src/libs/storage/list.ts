@@ -6,11 +6,12 @@ import { getUserLists, setUserLists } from './user';
 type ListId = string;
 
 // key - list:${ListId}
-type List = {
+export type List = {
   items: ListItem[];
 };
 
 type ListItem = {
+  id: string;
   text: string;
   checked: boolean;
 };
