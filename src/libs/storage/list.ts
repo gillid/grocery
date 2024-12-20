@@ -6,7 +6,7 @@ import { getUserLists, setUserLists } from './user';
 type ListId = string;
 
 // key - list:${ListId}
-type List = {
+export type List = {
   items: ListItem[];
 };
 
