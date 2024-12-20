@@ -13,17 +13,19 @@ type ItemsState = {
 
 const useItemsStore = create<ItemsState>((set) => ({
   items: [],
-  lastSynced: Date.now(),
+  lastSynced: 0,
   isError: false,
 
   setItems: (items) => {
-    set({ items });
+    set({ items, lastSynced: Date.now() });
   },
 
   setError: (isError) => {
     set({ isError });
   },
 }));
+
+let initialSyncDone = false;
 
 export const useItems = (listId: string) => {
   const [isPending, startTransition] = useTransition();
@@ -36,11 +38,10 @@ export const useItems = (listId: string) => {
   } = useItemsStore();
 
   const syncItems = () => {
-    setError(false);
-
     startTransition(async () => {
       const items = await getListItems(listId);
       setItemsToStore(items);
+      setError(false);
     });
   };
 
@@ -59,14 +60,21 @@ export const useItems = (listId: string) => {
   };
 
   useEffect(() => {
+    if (initialSyncDone) return;
+
     syncItems();
+    initialSyncDone = true;
   }, [listId]);
 
-  const status = isPending
-    ? ('pending' as const)
-    : isError
-      ? ('error' as const)
-      : ('success' as const);
+  const status = (function () {
+    if (lastSynced === 0) return 'pending';
+
+    if (isPending) return 'pending';
+
+    if (isError) return 'error';
+
+    return 'success';
+  })();
 
   return {
     items,

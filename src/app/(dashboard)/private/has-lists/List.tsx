@@ -21,16 +21,17 @@ import {
   restrictToParentElement,
 } from '@dnd-kit/modifiers';
 import { ListItem } from './ListItem';
-import { SyncIndicator } from './SyncIndicator';
 import { AddNewItem } from './AddNewItem';
 import { useItems } from './useItems';
+import { LastSynced } from './status/LastSynced';
+import { SyncActions } from './status/SyncActions';
 
 export const List: React.FC<
   React.PropsWithChildren<{
     listId: string;
   }>
 > = ({ listId }) => {
-  const { items, lastSynced, status, setItems } = useItems(listId);
+  const { items, setItems } = useItems(listId);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -51,12 +52,11 @@ export const List: React.FC<
     }
   }
 
-  // TODO: purge checked
-
   return (
     <>
-      <div className='mb-6'>
-        <SyncIndicator status={status} lastSynced={lastSynced} />
+      <div className='mb-6 flex items-center gap-2'>
+        <SyncActions listId={listId} />
+        <LastSynced listId={listId} />
       </div>
 
       <div className='mb-2'>
