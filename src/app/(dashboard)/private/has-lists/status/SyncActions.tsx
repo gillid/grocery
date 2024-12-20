@@ -7,12 +7,15 @@ import { useItems } from '../useItems';
 export const SyncActions: React.FC<{
   listId: string;
 }> = ({ listId }) => {
-  const { status, syncItems } = useItems(listId);
+  const { status, items, setItems, syncItems } = useItems(listId);
 
   const isPending = status === 'pending';
   const isError = status === 'error';
 
-  // TODO: clean handler
+  const cleanChecked = () => {
+    const newItems = items.filter((item) => !item.checked);
+    setItems(newItems);
+  };
 
   return (
     <div className='flex gap-3'>
@@ -26,6 +29,7 @@ export const SyncActions: React.FC<{
       <button
         className='btn btn-outline btn-error btn-xs gap-[0.25em]'
         disabled={isPending || isError}
+        onClick={cleanChecked}
       >
         Clean <MdCleaningServices />
       </button>
