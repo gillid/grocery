@@ -71,6 +71,7 @@ export const List: React.FC<
               {items.map((item) => (
                 <ListItem
                   key={item.id}
+                  listId={listId}
                   id={item.id}
                   text={item.text}
                   checked={item.checked}

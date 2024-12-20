@@ -1,5 +1,6 @@
-import { useEffect, useTransition } from 'react';
+import { useCallback, useEffect, useMemo, useTransition } from 'react';
 import { create } from 'zustand/react';
+import debounce from 'lodash.debounce';
 import type { List } from '@/storage';
 import { getListItems, setListItems } from './listItemsApi';
 
@@ -45,18 +46,30 @@ export const useItems = (listId: string) => {
     });
   };
 
-  const setItems = (items: List['items']) => {
-    setError(false);
-
+  const postItems = useCallback((items: List['items']) => {
     startTransition(async () => {
-      setItemsToStore(items);
-
       try {
         await setListItems(listId, items);
       } catch (err) {
         setError(err ? true : true);
       }
     });
+  }, []);
+
+  const postItemsDebounced = useMemo(
+    () => debounce(postItems, 200),
+    [postItems]
+  );
+
+  const setItems = (items: List['items'], useDebounce = false) => {
+    setError(false);
+    setItemsToStore(items);
+
+    if (useDebounce) {
+      postItemsDebounced(items);
+    } else {
+      postItems(items);
+    }
   };
 
   useEffect(() => {
