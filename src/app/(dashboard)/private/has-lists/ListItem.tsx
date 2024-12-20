@@ -27,13 +27,7 @@ export const ListItem: React.FC<
       style={style}
       className='flex items-center mb-2 gap-1'
     >
-      <span
-        className='btn btn-ghost btn-sm px-1'
-        {...listeners}
-        {...attributes}
-      >
-        <MdDragIndicator />
-      </span>
+      {/*  TODO: checkbox */}
 
       <input
         type='text'
@@ -43,7 +37,13 @@ export const ListItem: React.FC<
         disabled={true}
       />
 
-      {/*  TODO: check */}
+      <span
+        className='btn btn-ghost btn-sm px-1'
+        {...listeners}
+        {...attributes}
+      >
+        <MdDragIndicator />
+      </span>
     </div>
   );
 };

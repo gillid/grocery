@@ -1,27 +1,24 @@
 'use client';
 
-import React, { useTransition } from 'react';
-import type { List } from '@/storage';
-import { setListItems } from './listItemsApi';
+import React from 'react';
+import { generateHex } from '@/random';
+import { useItems } from './useItems';
 
 export const AddNewItem: React.FC<
   React.PropsWithChildren<{
     listId: string;
-    list: List;
   }>
-> = ({ listId, list }) => {
-  const [isPending, startTransition] = useTransition();
+> = ({ listId }) => {
+  const { items, status, setItems } = useItems(listId);
 
   const handleClick = () => {
-    startTransition(async () => {
-      await setListItems(listId, [...list.items, { text: '', checked: false }]);
-    });
+    setItems([...items, { id: generateHex(4), text: '', checked: false }]);
   };
 
   return (
     <button
       className={`btn btn-sm btn-block`}
-      disabled={isPending}
+      disabled={status === 'pending'}
       onClick={handleClick}
     >
       Add item

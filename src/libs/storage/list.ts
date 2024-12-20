@@ -11,6 +11,7 @@ export type List = {
 };
 
 type ListItem = {
+  id: string;
   text: string;
   checked: boolean;
 };
