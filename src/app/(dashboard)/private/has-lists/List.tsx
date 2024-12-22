@@ -82,7 +82,7 @@ export const List: React.FC<
         </DndContext>
       </div>
 
-      <div className='mt-6'>
+      <div className='mt-6 mb-3'>
         <AddNewItem listId={listId} />
       </div>
     </>

@@ -8,6 +8,10 @@ export const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
     <html lang='en' data-theme='cupcake'>
       <Head>
         <meta name='apple-mobile-web-app-title' content='Grocery' />
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+        />
       </Head>
       <body>
         <div className='h-screen overflow-y-scroll overflow-x-hidden relative'>
