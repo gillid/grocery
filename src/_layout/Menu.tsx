@@ -6,6 +6,14 @@ import { getAuth } from '@/auth';
 export const Menu = async () => {
   const auth = await getAuth();
 
+  const isStandalone = (function () {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+
+    return window.matchMedia('(display-mode: standalone)').matches;
+  })();
+
   return (
     <div className='dropdown dropdown-end'>
       <div tabIndex={0} role='button' className='btn btn-square btn-ghost'>
@@ -17,6 +25,7 @@ export const Menu = async () => {
       >
         <MenuItem href='/'>Dashboard</MenuItem>
         {auth && <MenuItem href='/share'>Share</MenuItem>}
+        {!isStandalone && <MenuItem href='/pwa'>PWA</MenuItem>}
         {auth && <MenuItem href='/settings'>Settings</MenuItem>}
         <MenuItem href='/about'>About</MenuItem>
       </ul>
