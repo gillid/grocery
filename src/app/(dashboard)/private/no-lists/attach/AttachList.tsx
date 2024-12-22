@@ -26,7 +26,7 @@ export const AttachList = () => {
         <input
           type='text'
           placeholder='Enter code'
-          className={`input input-bordered input-sm w-full max-w-xs bg-white ${error && 'input-error'}`}
+          className={`input input-bordered input-sm text-base leading-8 w-full max-w-xs bg-white ${error && 'input-error'}`}
           value={code}
           onChange={(e) => {
             setError(false);

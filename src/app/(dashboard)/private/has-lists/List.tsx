@@ -54,12 +54,12 @@ export const List: React.FC<
 
   return (
     <>
-      <div className='mb-6 flex items-center gap-2'>
+      <div className='mb-6 flex items-center justify-between gap-2'>
         <SyncActions listId={listId} />
         <LastSynced listId={listId} />
       </div>
 
-      <div className='mb-2'>
+      <div className='mb-2 select-none'>
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -82,7 +82,7 @@ export const List: React.FC<
         </DndContext>
       </div>
 
-      <div className='mt-6'>
+      <div className='mt-6 mb-3'>
         <AddNewItem listId={listId} />
       </div>
     </>

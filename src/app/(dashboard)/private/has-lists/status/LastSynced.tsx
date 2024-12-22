@@ -24,7 +24,7 @@ export const LastSynced: React.FC<{
 
   if (status === 'error') {
     return (
-      <div className='flex-1 text-sm text-error italic flex items-center justify-end'>
+      <div className='text-sm text-error italic flex items-center'>
         <span className='mr-1 inline-block h-4 leading-none'>sync failure</span>
         <MdOutlineErrorOutline />
       </div>
@@ -33,7 +33,7 @@ export const LastSynced: React.FC<{
 
   if (status === 'pending') {
     return (
-      <div className='flex-1 text-sm text-indigo-300 italic flex items-center justify-end'>
+      <div className='text-sm text-indigo-300 italic flex items-center'>
         <span className='mr-1 inline-block h-4 leading-none'>updating</span>
         <span className='loading loading-ring loading-xs'></span>
       </div>
@@ -45,7 +45,7 @@ export const LastSynced: React.FC<{
 
   if (diff < 60 * 1000) {
     return (
-      <div className='flex-1 text-sm text-emerald-300 italic flex items-center justify-end'>
+      <div className='text-sm text-emerald-300 italic flex items-center'>
         <span className='mr-1 inline-block h-4 leading-none'>
           synced recently
         </span>
@@ -63,9 +63,7 @@ export const LastSynced: React.FC<{
     const Icon = isStale ? MdOutlineWarningAmber : MdOutlineCheckCircleOutline;
 
     return (
-      <div
-        className={`flex-1 text-sm ${color} italic flex items-center justify-end`}
-      >
+      <div className={`text-sm ${color} italic flex items-center`}>
         <span className='mr-1 inline-block h-4 leading-none'>
           synced {minutes}m ago
         </span>
@@ -77,9 +75,7 @@ export const LastSynced: React.FC<{
   const hours = Math.floor(diff / (60 * 60 * 1000));
 
   return (
-    <div
-      className={`flex-1 text-sm text-error italic flex items-center justify-end`}
-    >
+    <div className={`text-sm text-error italic flex items-center`}>
       <span className='mr-1 inline-block h-4 leading-none'>
         synced {hours}h ago
       </span>

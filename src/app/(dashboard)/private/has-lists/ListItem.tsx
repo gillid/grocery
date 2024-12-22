@@ -48,32 +48,32 @@ export const ListItem: React.FC<
     <div
       ref={disabled ? undefined : setNodeRef}
       style={style}
-      className='flex items-center mb-2 gap-1'
+      className='flex items-center mb-2 gap-2'
     >
+      <span
+        className={`btn btn-ghost btn-sm bg-gray-50 px-2 ${disabled ? 'opacity-50' : ''}`}
+        {...listeners}
+        {...attributes}
+      >
+        <MdDragIndicator />
+      </span>
+
       <input
         type='checkbox'
         checked={checked}
         disabled={disabled}
-        className={`checkbox checkbox-sm mr-1 ${checked ? 'opacity-30' : ''}`}
+        className={`checkbox checkbox-sm ${checked ? 'opacity-30' : ''}`}
         onChange={toggleCheck}
       />
 
       <input
         type='text'
         placeholder='Type here'
-        className={`input input-bordered input-sm w-full max-w-xs ${checked ? 'opacity-30' : ''}`}
+        className={`input input-bordered input-sm text-base leading-8 w-full max-w-xs ${checked ? 'opacity-30' : ''}`}
         value={text}
         disabled={disabled}
         onChange={changeText}
       />
-
-      <span
-        className={`btn btn-ghost btn-sm px-1 ${disabled ? 'opacity-50' : ''}`}
-        {...listeners}
-        {...attributes}
-      >
-        <MdDragIndicator />
-      </span>
     </div>
   );
 };
