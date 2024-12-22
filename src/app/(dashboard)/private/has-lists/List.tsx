@@ -59,7 +59,7 @@ export const List: React.FC<
         <LastSynced listId={listId} />
       </div>
 
-      <div className='mb-2'>
+      <div className='mb-2 select-none'>
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
