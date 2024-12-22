@@ -69,7 +69,7 @@ export const ListItem: React.FC<
       <input
         type='text'
         placeholder='Type here'
-        className={`input input-bordered input-sm w-full max-w-xs ${checked ? 'opacity-30' : ''}`}
+        className={`input input-bordered input-sm text-base leading-8 w-full max-w-xs ${checked ? 'opacity-30' : ''}`}
         value={text}
         disabled={disabled}
         onChange={changeText}
