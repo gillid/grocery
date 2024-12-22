@@ -7,6 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'An app for creating synced grocery list',
     start_url: '/',
     display: 'standalone',
+    orientation: 'portrait',
     theme_color: '#DBCA9A',
     background_color: '#DBCA9A',
     icons: [

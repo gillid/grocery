@@ -5,7 +5,7 @@ import Head from 'next/head';
 
 export const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <html lang='en' data-theme='cupcake'>
+    <html lang='en' dir='ltr' data-theme='cupcake'>
       <Head>
         <meta name='apple-mobile-web-app-title' content='Grocery' />
         <meta
