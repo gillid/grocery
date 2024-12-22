@@ -54,7 +54,7 @@ export const List: React.FC<
 
   return (
     <>
-      <div className='mb-6 flex items-center gap-2'>
+      <div className='mb-6 flex items-center justify-between gap-2'>
         <SyncActions listId={listId} />
         <LastSynced listId={listId} />
       </div>
