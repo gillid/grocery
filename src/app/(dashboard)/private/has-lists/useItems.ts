@@ -97,3 +97,14 @@ export const useItems = (listId: string) => {
     syncItems,
   };
 };
+
+export const useResetItems = () => {
+  const { setItems: setItemsToStore } = useItemsStore();
+
+  return {
+    reset: () => {
+      setItemsToStore([]);
+      initialSyncDone = false;
+    },
+  };
+};

@@ -7,4 +7,5 @@ export const attachExistingList = async (shareCode: string) => {
   await linkList(shareCode);
 
   revalidatePath('/');
+  revalidatePath('/share');
 };
