@@ -51,7 +51,7 @@ export const ListItem: React.FC<
       className='flex items-center mb-2 gap-2'
     >
       <span
-        className={`btn btn-ghost btn-sm bg-gray-50 px-2 ${disabled ? 'opacity-50' : ''}`}
+        className={`btn btn-ghost btn-sm bg-gray-50 px-2 touch-none ${disabled ? 'opacity-50' : ''}`}
         {...listeners}
         {...attributes}
       >
