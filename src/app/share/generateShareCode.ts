@@ -15,4 +15,5 @@ export const generateShareCode = async () => {
   await createLink(firstList);
 
   revalidatePath('/share');
+  revalidatePath('/');
 };

@@ -9,4 +9,6 @@ export const deleteAndLogout = async () => {
   await deleteAuth();
 
   revalidatePath('/settings');
+  revalidatePath('/share');
+  revalidatePath('/');
 };

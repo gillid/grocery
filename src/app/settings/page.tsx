@@ -1,7 +1,7 @@
 import React from 'react';
 import { redirect } from 'next/navigation';
 import { getAuth } from '@/auth';
-import { deleteAndLogout } from './deleteAndLogout';
+import { DeleteUser } from './DeleteUser';
 
 export default async function Settings() {
   const auth = await getAuth();
@@ -17,9 +17,7 @@ export default async function Settings() {
       <p className='mb-4'>You can delete your user.</p>
 
       <p>
-        <button className='btn btn-sm btn-error' onClick={deleteAndLogout}>
-          Delete User
-        </button>
+        <DeleteUser />
       </p>
     </div>
   );
