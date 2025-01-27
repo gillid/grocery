@@ -2,10 +2,12 @@ import React from 'react';
 import { Header } from './Header';
 import './globals.css';
 import Head from 'next/head';
+import { AuthRefresh } from './AuthRefresh';
 
 export const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <html lang='en' dir='ltr' data-theme='cupcake'>
+      <AuthRefresh />
       <Head>
         <meta name='apple-mobile-web-app-title' content='Grocery' />
         <meta

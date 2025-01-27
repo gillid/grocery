@@ -14,6 +14,7 @@ const getSession = async () => {
     cookieName: 'auth',
     cookieOptions: {
       secure: isProduction(),
+      maxAge: 90 * 24 * 60 * 60, // 90 days
     },
   });
 };
@@ -56,4 +57,10 @@ export const deleteAuth = async () => {
   const session = await getSession();
 
   session.destroy();
+};
+
+export const refreshAuth = async (): Promise<void> => {
+  const session = await getSession();
+
+  await session.save();
 };
